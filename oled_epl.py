@@ -36,7 +36,6 @@ text_lines = [
     "Basinc: 101.325 kPa",
     "Irtifa: 55.6",
     "Pil voltaji: 7.2 V",
-    
     "GPS lat, long, alt:",
     "38.46833997915811, 27.192330535232344, 46.3"
 ]
@@ -53,7 +52,7 @@ for line in text_lines:
 disp.image(image)
 disp.display()
 
-time.sleep(5)
+time.sleep(12)
 
 # Clear the display
 disp.clear()
