@@ -37,7 +37,7 @@ text_lines = [
     "Irtifa: 55.6",
     "Pil voltaji: 7.2 V",
     
-    "GPS enlem, boylam, irtifa:",
+    "GPS lat, long, alt:",
     "38.46833997915811, 27.192330535232344, 46.3"
 ]
 
