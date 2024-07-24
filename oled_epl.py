@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import Adafruit_SSD1306
 from PIL import Image, ImageDraw, ImageFont
 import time
