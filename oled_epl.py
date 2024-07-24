@@ -36,8 +36,8 @@ text_lines = [
     "Basinc: 101.325 kPa",
     "Irtifa: 55.6",
     "Pil voltaji: 7.2 V",
-    "GPS lat, long, alt:",
-    "38.46833997915811, 27.192330535232344, 46.3"
+    "Hata kodu listesi:",
+    "N/A , N/A , 0 , 1 , N/A"
 ]
 
 # Position to start drawing text
