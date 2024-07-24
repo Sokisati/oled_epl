@@ -16,6 +16,7 @@ class BMPPage(OLEDPage):
     def display(self, disp):
         disp.image(self.bmp)
         disp.display()
+        time.sleep(self.actionSecond);
 
 class TextPage(OLEDPage):
     def __init__(self, fontSize, textLines):
@@ -41,6 +42,7 @@ class TextPage(OLEDPage):
         image = self.drawText()
         disp.image(image)
         disp.display()
+        time.sleep(self.actionSecond);
 
 class OLED:
     def __init__(self):
@@ -61,9 +63,6 @@ oled = OLED()
 
 
 bmp_page = BMPPage('logo.bmp')
-oled.display(bmp_page)
-time.sleep(2)
-
 text_lines = [
     "Sicaklik: 30 C",
     "Basinc: 101.325 kPa",
@@ -72,10 +71,11 @@ text_lines = [
     "Hata kodu listesi:",
     "N/A , N/A , 0 , 1 , N/A"
 ]
-
 text_page = TextPage(10, text_lines)
+
+oled.display(bmp_page)
 oled.display(text_page)
-time.sleep(12)
+
 
 
 oled.cleanup()
