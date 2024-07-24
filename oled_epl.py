@@ -4,33 +4,66 @@ import Adafruit_SSD1306
 from PIL import Image, ImageDraw, ImageFont
 import time
 
-# Initialize the library (size of the display)
-disp = Adafruit_SSD1306.SSD1306_128_64(rst=None, i2c_address=0x3C)
+class OLEDPage:
+    def __init__(self):
+        self.actionSecond = 6
 
-# Initialize display
-disp.begin()
-disp.clear()
-disp.display()
+class BMPPage(OLEDPage):
+    def __init__(self, path):
+        super().__init__()
+        self.bmp = Image.open(path).convert('1')
 
-# Load image
-logo = Image.open('logo.bmp').convert('1')
+    def display(self, disp):
+        disp.image(self.bmp)
+        disp.display()
 
-# Display logo
-disp.image(logo)
-disp.display()
+class TextPage(OLEDPage):
+    def __init__(self, fontSize, textLines):
+        super().__init__()
+        self.fontSelection = 'DejaVuSans-Bold.ttf'
+        self.fontSize = fontSize
+        self.font = ImageFont.truetype(self.fontSelection, self.fontSize)
+        self.textLines = textLines
+
+    def drawText(self):
+        
+        image = Image.new('1', (128, 64))
+        draw = ImageDraw.Draw(image)
+        
+        y = 0
+        for line in self.textLines:
+            draw.text((0, y), line, font=self.font, fill=255)
+            y += self.fontSize
+        
+        return image
+
+    def display(self, disp):
+        image = self.drawText()
+        disp.image(image)
+        disp.display()
+
+class OLED:
+    def __init__(self):
+        self.disp = Adafruit_SSD1306.SSD1306_128_64(rst=None, i2c_address=0x3C)
+        self.disp.begin()
+        self.disp.clear()
+        self.disp.display()
+
+    def display(self, page):
+        page.display(self.disp)
+
+    def cleanup(self):
+        self.disp.clear()
+        self.disp.display()
+
+
+oled = OLED()
+
+
+bmp_page = BMPPage('logo.bmp')
+oled.display(bmp_page)
 time.sleep(2)
 
-# Create a new image for the text
-image = Image.new('1', (128, 64))
-draw = ImageDraw.Draw(image)
-
-# Load a font
-try:
-    font = ImageFont.truetype('DejaVuSans-Bold.ttf', 10)
-except IOError:
-    font = ImageFont.load_default()
-
-# Define text to display
 text_lines = [
     "Sicaklik: 30 C",
     "Basinc: 101.325 kPa",
@@ -40,20 +73,9 @@ text_lines = [
     "N/A , N/A , 0 , 1 , N/A"
 ]
 
-# Position to start drawing text
-y = 0
-
-# Draw the text
-for line in text_lines:
-    draw.text((0, y), line, font=font, fill=255)
-    y += 10  # Move down for the next line
-
-# Display the image
-disp.image(image)
-disp.display()
-
+text_page = TextPage(10, text_lines)
+oled.display(text_page)
 time.sleep(12)
 
-# Clear the display
-disp.clear()
-disp.display()
+
+oled.cleanup()
