@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 
 import Adafruit_SSD1306
 from PIL import Image, ImageDraw, ImageFont
@@ -32,7 +33,7 @@ except IOError:
 # Define text to display
 text_lines = [
     "Sicaklik / Temperature: 30 C",
-    "Basinç / Pressure: 101.325 kPa",
+    "Basinc / Pressure: 101.325 kPa",
     "Irtifa / Altitude: 55.6",
     "Pil voltaji / Battery voltage: 7.2 V",
     "GPS enlem, boylam, irtifa / GPS lat, long, alt:",
