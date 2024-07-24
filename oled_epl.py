@@ -18,7 +18,7 @@ logo = Image.open('logo.bmp').convert('1')
 # Display logo
 disp.image(logo)
 disp.display()
-time.sleep(5)
+time.sleep(2)
 
 # Create a new image for the text
 image = Image.new('1', (128, 64))
@@ -32,11 +32,12 @@ except IOError:
 
 # Define text to display
 text_lines = [
-    "Sicaklik / Temperature: 30 C",
-    "Basinc / Pressure: 101.325 kPa",
-    "Irtifa / Altitude: 55.6",
-    "Pil voltaji / Battery voltage: 7.2 V",
-    "GPS enlem, boylam, irtifa / GPS lat, long, alt:",
+    "Sicaklik: 30 C",
+    "Basinc: 101.325 kPa",
+    "Irtifa: 55.6",
+    "Pil voltaji: 7.2 V",
+    
+    "GPS enlem, boylam, irtifa:",
     "38.46833997915811, 27.192330535232344, 46.3"
 ]
 
