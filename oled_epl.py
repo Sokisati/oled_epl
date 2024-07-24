@@ -11,8 +11,7 @@ disp.clear()
 disp.display()
 
 # Load image
-image = Image.open('/home/pi/oled_epl/logo.bmp').convert('1')
-
+image = Image.open('logo.bmp').convert('1')
 
 # Display image
 disp.image(image)
